@@ -12,6 +12,9 @@ public class UserRequestDto {
     private final String username;
 
     @NotBlank
+    private final String password;
+
+    @NotBlank
     @Email
     private final String email;
 }
