@@ -1,5 +1,7 @@
-package com.example.jpascheduleapi.entity;
+package com.example.jpascheduleapi.schedule.entity;
 
+import com.example.jpascheduleapi.common.BaseEntity;
+import com.example.jpascheduleapi.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +15,9 @@ public class Schedule extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String username;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(nullable = false)
     private String title;
@@ -22,14 +25,9 @@ public class Schedule extends BaseEntity {
     @Column(nullable = false, columnDefinition = "longtext")
     private String contents;
 
-    public Schedule(String username, String title, String contents) {
-        this.username = username;
+    public Schedule(String title, String contents) {
         this.title = title;
         this.contents = contents;
-    }
-
-    public void updateUsername(String username) {
-        this.username = username;
     }
 
     public void updateTitle(String title) {
@@ -38,5 +36,9 @@ public class Schedule extends BaseEntity {
 
     public void updateContents(String contents) {
         this.contents = contents;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

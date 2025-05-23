@@ -1,7 +1,7 @@
-package com.example.jpascheduleapi.schedule.controller;
+package com.example.jpascheduleapi.user.controller;
 
-import com.example.jpascheduleapi.schedule.dto.UserRequestDto;
-import com.example.jpascheduleapi.schedule.dto.UserResponseDto;
+import com.example.jpascheduleapi.user.dto.UserRequestDto;
+import com.example.jpascheduleapi.user.dto.UserResponseDto;
 import com.example.jpascheduleapi.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +40,4 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
-
-
-
 }

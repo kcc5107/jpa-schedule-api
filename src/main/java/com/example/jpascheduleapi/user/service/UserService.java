@@ -1,9 +1,9 @@
-package com.example.jpascheduleapi.schedule.service;
+package com.example.jpascheduleapi.user.service;
 
-import com.example.jpascheduleapi.schedule.dto.UserRequestDto;
-import com.example.jpascheduleapi.schedule.dto.UserResponseDto;
-import com.example.jpascheduleapi.schedule.entity.User;
-import com.example.jpascheduleapi.schedule.repository.UserRepository;
+import com.example.jpascheduleapi.user.dto.UserRequestDto;
+import com.example.jpascheduleapi.user.dto.UserResponseDto;
+import com.example.jpascheduleapi.user.entity.User;
+import com.example.jpascheduleapi.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

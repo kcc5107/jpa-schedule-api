@@ -1,5 +1,6 @@
-package com.example.jpascheduleapi.schedule.entity;
+package com.example.jpascheduleapi.user.entity;
 
+import com.example.jpascheduleapi.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

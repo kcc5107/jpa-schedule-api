@@ -1,9 +1,9 @@
-package com.example.jpascheduleapi.service;
+package com.example.jpascheduleapi.schedule.service;
 
-import com.example.jpascheduleapi.dto.ScheduleRequestDto;
-import com.example.jpascheduleapi.dto.ScheduleResponseDto;
-import com.example.jpascheduleapi.entity.Schedule;
-import com.example.jpascheduleapi.repository.ScheduleRepository;
+import com.example.jpascheduleapi.schedule.dto.ScheduleRequestDto;
+import com.example.jpascheduleapi.schedule.dto.ScheduleResponseDto;
+import com.example.jpascheduleapi.schedule.entity.Schedule;
+import com.example.jpascheduleapi.schedule.repository.ScheduleRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,6 @@ public class ScheduleService {
     public ScheduleResponseDto updateSchedule(Long id, ScheduleRequestDto requestDto) {
         Schedule foundSchedule = scheduleRepository.findScheduleByIdOrElseThrow(id);
 
-        foundSchedule.updateUsername(requestDto.getUsername());
         foundSchedule.updateTitle(requestDto.getTitle());
         foundSchedule.updateContents(requestDto.getContents());
 

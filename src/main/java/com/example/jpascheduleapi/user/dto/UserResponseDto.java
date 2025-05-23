@@ -1,4 +1,4 @@
-package com.example.jpascheduleapi.schedule.dto;
+package com.example.jpascheduleapi.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

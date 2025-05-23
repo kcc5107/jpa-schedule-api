@@ -1,4 +1,4 @@
-package com.example.jpascheduleapi.schedule.entity;
+package com.example.jpascheduleapi.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -16,9 +16,10 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(updatable = false, name = "created_at")
     private LocalDateTime createdAt;
 
     @LastModifiedDate
+    @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 }
