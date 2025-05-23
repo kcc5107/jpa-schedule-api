@@ -1,8 +1,8 @@
-package com.example.jpascheduleapi.controller;
+package com.example.jpascheduleapi.schedule.controller;
 
-import com.example.jpascheduleapi.dto.ScheduleRequestDto;
-import com.example.jpascheduleapi.dto.ScheduleResponseDto;
-import com.example.jpascheduleapi.service.ScheduleService;
+import com.example.jpascheduleapi.schedule.dto.ScheduleRequestDto;
+import com.example.jpascheduleapi.schedule.dto.ScheduleResponseDto;
+import com.example.jpascheduleapi.schedule.service.ScheduleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/schedules")
 public class ScheduleController {
+
     private final ScheduleService scheduleService;
 
     @PostMapping
@@ -28,8 +29,8 @@ public class ScheduleController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ScheduleResponseDto> updateSchedule(@Valid @PathVariable Long id
-            , @RequestBody ScheduleRequestDto requestDto) {
+    public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id
+            , @Valid @RequestBody ScheduleRequestDto requestDto) {
 
         return ResponseEntity.ok(scheduleService.updateSchedule(id, requestDto));
     }

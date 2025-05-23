@@ -4,6 +4,7 @@ import com.example.jpascheduleapi.dto.ScheduleRequestDto;
 import com.example.jpascheduleapi.dto.ScheduleResponseDto;
 import com.example.jpascheduleapi.entity.Schedule;
 import com.example.jpascheduleapi.repository.ScheduleRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class ScheduleService {
     }
 
     public ScheduleResponseDto findScheduleById(Long id) {
-        Schedule foundSchedule = scheduleRepository.findByIdOrElseThrow(id);
+        Schedule foundSchedule = scheduleRepository.findScheduleByIdOrElseThrow(id);
 
         return ScheduleResponseDto.builder()
                 .username(foundSchedule.getUsername())
@@ -37,8 +38,9 @@ public class ScheduleService {
                 .build();
     }
 
+    @Transactional
     public ScheduleResponseDto updateSchedule(Long id, ScheduleRequestDto requestDto) {
-        Schedule foundSchedule = scheduleRepository.findByIdOrElseThrow(id);
+        Schedule foundSchedule = scheduleRepository.findScheduleByIdOrElseThrow(id);
 
         foundSchedule.updateUsername(requestDto.getUsername());
         foundSchedule.updateTitle(requestDto.getTitle());
@@ -53,7 +55,7 @@ public class ScheduleService {
     }
 
     public void deleteSchedule(Long id) {
-        Schedule foundSchedule = scheduleRepository.findByIdOrElseThrow(id);
-        scheduleRepository.deleteById(id);
+        Schedule foundSchedule = scheduleRepository.findScheduleByIdOrElseThrow(id);
+        scheduleRepository.delete(foundSchedule);
     }
 }

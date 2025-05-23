@@ -1,4 +1,4 @@
-package com.example.jpascheduleapi.entity;
+package com.example.jpascheduleapi.schedule.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -23,4 +23,13 @@ public class User extends BaseEntity {
         this.username = username;
         this.email = email;
     }
+
+    public void updateUsername(String username) {
+        this.username = username;
+    }
+
+    public void updateEmail(String email) {
+        this.email = email;
+    }
+
 }
