@@ -3,6 +3,7 @@ package com.example.jpascheduleapi.user.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Range;
@@ -11,11 +12,11 @@ import org.hibernate.validator.constraints.Range;
 @Getter
 public class UserRequestDto {
     @NotBlank
-    @Range(min = 2, max = 4, message = "2글자 이상, 4글자 이내")
+    @Size(min = 2, max = 4, message = "2글자 이상, 4글자 이내")
     private final String username;
 
     @NotBlank
-    @Range(min = 4, max = 10, message = "4글자 이상, 10글자 이내")
+    @Size(min = 4, max = 10, message = "4글자 이상, 10글자 이내")
     private final String password;
 
     @NotBlank
