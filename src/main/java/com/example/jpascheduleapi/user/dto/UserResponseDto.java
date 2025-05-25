@@ -2,9 +2,11 @@ package com.example.jpascheduleapi.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponseDto {
     private final Long id;
