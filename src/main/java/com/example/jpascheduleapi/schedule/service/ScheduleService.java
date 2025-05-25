@@ -30,7 +30,7 @@ public class ScheduleService {
 
         return ScheduleResponseDto.builder()
                 .id(savedSchedule.getId())
-                // SchudeleAuthorDto는 String username 필드를 가지고 있음.
+                // ScheduleAuthorDto는 String username 필드를 가지고 있음 (확장과 유지보수를 위해 dto사용)
                 .user(new ScheduleAuthorDto(savedSchedule.getUser().getUsername()))
                 .title(savedSchedule.getTitle())
                 .contents(savedSchedule.getContents())
