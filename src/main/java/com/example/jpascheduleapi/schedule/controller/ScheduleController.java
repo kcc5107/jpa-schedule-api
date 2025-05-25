@@ -1,9 +1,10 @@
 package com.example.jpascheduleapi.schedule.controller;
 
+import com.example.jpascheduleapi.common.Const;
 import com.example.jpascheduleapi.schedule.dto.ScheduleRequestDto;
 import com.example.jpascheduleapi.schedule.dto.ScheduleResponseDto;
 import com.example.jpascheduleapi.schedule.service.ScheduleService;
-import com.example.jpascheduleapi.user.dto.UserResponseDto;
+import com.example.jpascheduleapi.user.dto.LoginUserDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ScheduleController {
 
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> createSchedule(@Valid @RequestBody ScheduleRequestDto requestDto,
-                                                              @SessionAttribute UserResponseDto loginUser) {
+                                                              @SessionAttribute(name = Const.LOGIN_USER) LoginUserDto loginUser) {
         return ResponseEntity.status(HttpStatus.CREATED).body(scheduleService.createSchedule(requestDto, loginUser));
     }
 
@@ -31,13 +32,13 @@ public class ScheduleController {
     @PatchMapping("/{id}")
     public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id,
                                                               @Valid @RequestBody ScheduleRequestDto requestDto,
-                                                              @SessionAttribute UserResponseDto loginUser) {
+                                                              @SessionAttribute LoginUserDto loginUser) {
         return ResponseEntity.ok(scheduleService.updateSchedule(id, requestDto, loginUser));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSchedule(@PathVariable Long id,
-                                               @SessionAttribute UserResponseDto loginUser) {
+                                               @SessionAttribute LoginUserDto loginUser) {
         scheduleService.deleteSchedule(id, loginUser);
         return ResponseEntity.ok().build();
     }

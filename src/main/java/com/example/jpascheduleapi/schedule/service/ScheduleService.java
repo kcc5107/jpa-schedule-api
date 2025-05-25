@@ -5,7 +5,7 @@ import com.example.jpascheduleapi.schedule.dto.ScheduleRequestDto;
 import com.example.jpascheduleapi.schedule.dto.ScheduleResponseDto;
 import com.example.jpascheduleapi.schedule.entity.Schedule;
 import com.example.jpascheduleapi.schedule.repository.ScheduleRepository;
-import com.example.jpascheduleapi.user.dto.UserResponseDto;
+import com.example.jpascheduleapi.user.dto.LoginUserDto;
 import com.example.jpascheduleapi.user.entity.User;
 import com.example.jpascheduleapi.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -20,7 +20,7 @@ public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
     private final UserRepository userRepository;
 
-    public ScheduleResponseDto createSchedule(ScheduleRequestDto requestDto, UserResponseDto loginUser) {
+    public ScheduleResponseDto createSchedule(ScheduleRequestDto requestDto, LoginUserDto loginUser) {
         User user = userRepository.findUserByIdOrElseThrow(loginUser.getId());
 
         Schedule schedule = new Schedule(requestDto.getTitle(), requestDto.getContents());
@@ -52,7 +52,7 @@ public class ScheduleService {
     }
 
     @Transactional
-    public ScheduleResponseDto updateSchedule(Long id, ScheduleRequestDto requestDto, UserResponseDto loginUser) {
+    public ScheduleResponseDto updateSchedule(Long id, ScheduleRequestDto requestDto, LoginUserDto loginUser) {
         Schedule foundSchedule = scheduleRepository.findScheduleByIdOrElseThrow(id);
 
         //todo 이 검증도 반복된다면 필터 사용 가능한지 확인
@@ -70,7 +70,7 @@ public class ScheduleService {
                 .build();
     }
 
-    public void deleteSchedule(Long id, UserResponseDto loginUser) {
+    public void deleteSchedule(Long id, LoginUserDto loginUser) {
         Schedule foundSchedule = scheduleRepository.findScheduleByIdOrElseThrow(id);
 
         if (!foundSchedule.getUser().getId().equals(loginUser.getId())) {
