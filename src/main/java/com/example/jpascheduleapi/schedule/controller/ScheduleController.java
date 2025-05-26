@@ -3,6 +3,7 @@ package com.example.jpascheduleapi.schedule.controller;
 import com.example.jpascheduleapi.common.Const;
 import com.example.jpascheduleapi.schedule.dto.ScheduleRequestDto;
 import com.example.jpascheduleapi.schedule.dto.ScheduleResponseDto;
+import com.example.jpascheduleapi.schedule.entity.Schedule;
 import com.example.jpascheduleapi.schedule.service.ScheduleService;
 import com.example.jpascheduleapi.user.dto.LoginUserDto;
 import jakarta.validation.Valid;
@@ -21,6 +22,7 @@ public class ScheduleController {
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> createSchedule(@Valid @RequestBody ScheduleRequestDto requestDto,
                                                               @SessionAttribute(name = Const.LOGIN_USER) LoginUserDto loginUser) {
+        ScheduleResponseDto scheduleResponseDto = scheduleService.createSchedule(requestDto, loginUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(scheduleService.createSchedule(requestDto, loginUser));
     }
 

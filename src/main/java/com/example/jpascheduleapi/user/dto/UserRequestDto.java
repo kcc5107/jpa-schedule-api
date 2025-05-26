@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.hibernate.validator.constraints.Range;
 
 @AllArgsConstructor
 @Getter
