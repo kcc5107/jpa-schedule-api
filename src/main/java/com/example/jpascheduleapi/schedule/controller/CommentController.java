@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -28,6 +30,11 @@ public class CommentController {
     @GetMapping("/{comment_id}")
     public ResponseEntity<CommentResponseDto> findCommentById(@PathVariable(name = "comment_id") Long commentId) {
         return ResponseEntity.ok(commentService.findCommentById(commentId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CommentResponseDto>> findCommentsByScheduleId(@PathVariable(name = "schedule_id") Long scheduleId) {
+        return ResponseEntity.ok(commentService.findCommentsByScheduleId(scheduleId));
     }
 
     @PatchMapping("/{comment_id}")

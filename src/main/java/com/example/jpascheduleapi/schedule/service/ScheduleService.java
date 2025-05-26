@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ScheduleService {
@@ -78,5 +80,19 @@ public class ScheduleService {
         }
 
         scheduleRepository.delete(foundSchedule);
+    }
+
+    public List<ScheduleResponseDto> findSchedulesByUserId(Long userId) {
+        List<Schedule> schedulesByUserId = scheduleRepository.findSchedulesByUserId(userId);
+
+        return schedulesByUserId.stream()
+                .map(schedule -> ScheduleResponseDto.builder()
+                        .user(new ScheduleAuthorDto(schedule.getUser().getUsername()))
+                        .title(schedule.getTitle())
+                        .contents(schedule.getContents())
+                        .createAt(schedule.getCreatedAt())
+                        .modifiedAt(schedule.getModifiedAt())
+                        .build()
+                ).toList();
     }
 }

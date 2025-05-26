@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class CommentService {
@@ -78,5 +80,17 @@ public class CommentService {
         }
 
         commentRepository.delete(foundComment);
+    }
+
+    public List<CommentResponseDto> findCommentsByScheduleId(Long id) {
+        List<Comment> comments = commentRepository.findAllByScheduleId(id);
+
+        return comments.stream()
+                .map(comment -> new CommentResponseDto(
+                        comment.getSchedule().getTitle(),
+                        comment.getUser().getUsername(),
+                        comment.getContents(), comment.getCreatedAt(),
+                        comment.getModifiedAt())
+                ).toList();
     }
 }

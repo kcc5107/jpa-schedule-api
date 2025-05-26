@@ -16,7 +16,7 @@ public class CommentResponseDto {
     private final LocalDateTime modifiedAt;
 
     @Builder
-    public CommentResponseDto(String contents, String username, String scheduleTitle, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public CommentResponseDto(String scheduleTitle, String username, String contents, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.contents = contents;
         this.username = username;
         this.scheduleTitle = scheduleTitle;
